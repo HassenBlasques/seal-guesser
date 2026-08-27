@@ -86,57 +86,53 @@ select{background:#101c30;color:white;border:1px solid #334155;border-radius:10p
     </div>
 
     <div class="dbline" id="dbline">
-      Databáze: 18 druhů pravých tuleňů. Nový quality gate preferuje Alive + Adult, přesnou druhovou shodu,
-      kvalitnější snímky a možnost nevhodnou fotografii trvale vyřadit.
-    </div>
+      Databáze: 18 druhů pravých tuleňů. Fotky se skládají z iNaturalist, GBIF a jako poslední záloha z Wikipedie. Nedostupný druh se automaticky přeskočí.</div>
   </div>
 </div>
 
 <script>
 const species = [
-  {cs:"tuleň středomořský", en:"Mediterranean monk seal", latin:"Monachus monachus",
+  {cs:"tuleň středomořský", en:"Mediterranean monk seal", latin:"Monachus monachus", wiki:"Mediterranean_monk_seal",
    clue:"Velký tuleň s krátkou širokou hlavou; dospělí mohou být velmi tmaví."},
-  {cs:"tuleň havajský", en:"Hawaiian monk seal", latin:"Neomonachus schauinslandi",
+  {cs:"tuleň havajský", en:"Hawaiian monk seal", latin:"Neomonachus schauinslandi", wiki:"Hawaiian_monk_seal",
    clue:"Štíhlý tropický tuleň s poměrně hladkou šedohnědou srstí a širokým čenichem."},
-  {cs:"rypouš severní", en:"Northern elephant seal", latin:"Mirounga angustirostris",
+  {cs:"rypouš severní", en:"Northern elephant seal", latin:"Mirounga angustirostris", wiki:"Northern_elephant_seal",
    clue:"Dospělý samec má nápadný převislý nos; druh je velmi mohutný."},
-  {cs:"rypouš jižní", en:"Southern elephant seal", latin:"Mirounga leonina",
+  {cs:"rypouš jižní", en:"Southern elephant seal", latin:"Mirounga leonina", wiki:"Southern_elephant_seal",
    clue:"Největší pravý tuleň; dospělý samec má mohutné tělo a nafukovací chobot."},
-  {cs:"tuleň krabožravý", en:"Crabeater seal", latin:"Lobodon carcinophaga",
+  {cs:"tuleň krabožravý", en:"Crabeater seal", latin:"Lobodon carcinophaga", wiki:"Crabeater_seal",
    clue:"Štíhlejší antarktický tuleň, často světle zbarvený a s jizvami."},
-  {cs:"tuleň Weddellův", en:"Weddell seal", latin:"Leptonychotes weddellii",
+  {cs:"tuleň Weddellův", en:"Weddell seal", latin:"Leptonychotes weddellii", wiki:"Weddell_seal",
    clue:"Robustní antarktický tuleň s krátkým čenichem a často jemně skvrnitými boky."},
-  {cs:"tuleň leopardí", en:"Leopard seal", latin:"Hydrurga leptonyx",
+  {cs:"tuleň leopardí", en:"Leopard seal", latin:"Hydrurga leptonyx", wiki:"Leopard_seal",
    clue:"Dlouhá plazovitá hlava, mohutná tlama a skvrny na krku a bocích."},
-  {cs:"tuleň Rossův", en:"Ross seal", latin:"Ommatophoca rossii",
+  {cs:"tuleň Rossův", en:"Ross seal", latin:"Ommatophoca rossii", wiki:"Ross_seal",
    clue:"Poměrně krátká hlava, velké oči a často proužkování či skvrnění na krku."},
-  {cs:"tuleň vousatý", en:"Bearded seal", latin:"Erignathus barbatus",
+  {cs:"tuleň vousatý", en:"Bearded seal", latin:"Erignathus barbatus", wiki:"Bearded_seal",
    clue:"Velmi dlouhé a husté vousy a poměrně hranatý čenich."},
-  {cs:"čepcol hřebenatý", en:"Hooded seal", latin:"Cystophora cristata",
-   clue:"Dospělý samec má nafukovací nosní vak; samice a mladší jedinci mohou být bez nápadného „čepce“."},
-  {cs:"tuleň kuželozubý", en:"Grey seal", latin:"Halichoerus grypus",
+  {cs:"čepcol hřebenatý", en:"Hooded seal", latin:"Cystophora cristata", wiki:"Hooded_seal",
+   clue:"Nafukovací „čepec“ je znak dospělého samce; samice a mladší jedinci ho nápadný mít nemusí."},
+  {cs:"tuleň kuželozubý", en:"Grey seal", latin:"Halichoerus grypus", wiki:"Grey_seal",
    clue:"Protáhlejší profil hlavy a delší nos než u tuleně obecného."},
-  {cs:"tuleň pruhovaný", en:"Ribbon seal", latin:"Histriophoca fasciata",
+  {cs:"tuleň pruhovaný", en:"Ribbon seal", latin:"Histriophoca fasciata", wiki:"Ribbon_seal",
    clue:"Dospělci mají nápadné světlé pruhy obtáčející tělo a přední ploutve."},
-  {cs:"tuleň grónský", en:"Harp seal", latin:"Pagophilus groenlandicus",
+  {cs:"tuleň grónský", en:"Harp seal", latin:"Pagophilus groenlandicus", wiki:"Harp_seal",
    clue:"Dospělci mají typickou tmavou kresbu připomínající harfu."},
-  {cs:"tuleň skvrnitý", en:"Spotted seal", latin:"Phoca largha",
+  {cs:"tuleň skvrnitý", en:"Spotted seal", latin:"Phoca largha", wiki:"Spotted_seal",
    clue:"Světlá až stříbřitá srst s výraznými tmavými skvrnami po těle."},
-  {cs:"tuleň obecný", en:"Harbor seal", latin:"Phoca vitulina",
+  {cs:"tuleň obecný", en:"Harbor seal", latin:"Phoca vitulina", wiki:"Harbor_seal",
    clue:"Kulatá hlava, krátký čenich a charakteristické V‑čkové nozdry."},
-  {cs:"tuleň kaspický", en:"Caspian seal", latin:"Pusa caspica",
+  {cs:"tuleň kaspický", en:"Caspian seal", latin:"Pusa caspica", wiki:"Caspian_seal",
    clue:"Menší druh; často šedavý se skvrněním, endemický pro Kaspické moře."},
-  {cs:"tuleň kroužkovaný", en:"Ringed seal", latin:"Pusa hispida",
+  {cs:"tuleň kroužkovaný", en:"Ringed seal", latin:"Pusa hispida", wiki:"Ringed_seal",
    clue:"Malý arktický tuleň s typickými světlými kroužky na tmavší srsti."},
-  {cs:"tuleň bajkalský", en:"Baikal seal", latin:"Pusa sibirica",
+  {cs:"tuleň bajkalský", en:"Baikal seal", latin:"Pusa sibirica", wiki:"Baikal_seal",
    clue:"Drobný sladkovodní tuleň s velkýma očima a poměrně jednolitou šedou srstí."}
 ];
 
 const $ = id => document.getElementById(id);
-const POOL_TARGET = 36;
+const TARGET_POOL = 36;
 const CACHE_DAYS = 7;
-const MIN_LONG_EDGE = 900;
-const MIN_SHORT_EDGE = 550;
 
 function shuffle(a){
   a=[...a];
@@ -147,247 +143,299 @@ function shuffle(a){
   return a;
 }
 function label(s){ return `${s.cs} (${s.en})`; }
-
-function cacheKey(latin){ return `sealGuesser.pool.v4.${latin}`; }
-function seenKey(latin){ return `sealGuesser.seen.v4.${latin}`; }
-function badKey(){ return "sealGuesser.badPhotos.v4"; }
+function safeText(x){ return String(x ?? "").replace(/[<>&"]/g,c=>({"<":"&lt;",">":"&gt;","&":"&amp;",'"':"&quot;"}[c])); }
 
 function readJSON(key, fallback){
-  try{
-    const raw=localStorage.getItem(key);
-    return raw ? JSON.parse(raw) : fallback;
-  }catch(_){ return fallback; }
+  try{ const raw=localStorage.getItem(key); return raw ? JSON.parse(raw) : fallback; }
+  catch(_){ return fallback; }
 }
-function writeJSON(key, value){
-  try{ localStorage.setItem(key, JSON.stringify(value)); }catch(_){}
+function writeJSON(key, value){ try{ localStorage.setItem(key, JSON.stringify(value)); }catch(_){} }
+
+function poolKey(latin){ return `sg.v4_1.pool.${latin}`; }
+function seenKey(latin){ return `sg.v4_1.seen.${latin}`; }
+function badKey(){ return "sg.v4_1.bad"; }
+
+function badSet(){ return new Set(readJSON(badKey(),[]).map(String)); }
+function markBadId(id){
+  if(!id) return;
+  const arr=readJSON(badKey(),[]).map(String);
+  if(!arr.includes(String(id))) arr.push(String(id));
+  writeJSON(badKey(),arr);
 }
 
-function largePhotoUrl(url){
-  if(!url) return "";
-  return url.replace("/square.", "/large.")
-            .replace("/small.", "/large.")
-            .replace("/medium.", "/large.");
+function licenseAllowed(s){
+  s=(s||"").toLowerCase();
+  return s.includes("creativecommons.org/publicdomain/zero") ||
+         s.includes("creativecommons.org/licenses/by/") ||
+         s.includes("creativecommons.org/licenses/by-sa/") ||
+         ["cc0","cc-by","cc-by-sa"].includes(s);
 }
-function licenseLabel(code){
-  const m={"cc0":"CC0","cc-by":"CC BY","cc-by-sa":"CC BY-SA"};
-  return m[(code||"").toLowerCase()] || (code || "licence neuvedena");
+function licenseLabel(s){
+  s=(s||"").toLowerCase();
+  if(s.includes("zero") || s==="cc0") return "CC0";
+  if(s.includes("by-sa") || s==="cc-by-sa") return "CC BY-SA";
+  if(s.includes("/by/") || s==="cc-by") return "CC BY";
+  return "CC";
 }
+function suspiciousText(s){
+  s=(s||"").toLowerCase();
+  return /\b(pup|pups|juvenile|newborn|new-born|baby|carcass|dead|skull|skeleton|taxiderm|bone|bones)\b/.test(s);
+}
+function inatLarge(url){
+  return (url||"").replace("/square.","/large.").replace("/small.","/large.").replace("/medium.","/large.");
+}
+function annotations(obs, attr){ return (obs.annotations||[]).filter(a=>a.controlled_attribute_id===attr).map(a=>a.controlled_value_id); }
+function exactINatSpecies(obs, latin){ return (obs.taxon?.name||"")===latin; }
+function alive(obs){ return annotations(obs,17).includes(18); }
+function juvenile(obs){ return annotations(obs,1).includes(8); }
+function adult(obs){ return annotations(obs,1).includes(2); }
 
-function annotations(obs, attrId){
-  return (obs.annotations || []).filter(a => a.controlled_attribute_id === attrId)
-                               .map(a => a.controlled_value_id);
-}
-function isExplicitlyAlive(obs){ return annotations(obs,17).includes(18); }
-function isExplicitlyDead(obs){ return annotations(obs,17).includes(19); }
-function isExplicitlyAdult(obs){ return annotations(obs,1).includes(2); }
-function isExplicitlyJuvenile(obs){ return annotations(obs,1).includes(8); }
-
-function suspiciousText(obs){
-  const t = `${obs.description||""} ${obs.place_guess||""}`.toLowerCase();
-  return /\b(pup|pups|juvenile|newborn|new-born|baby|carcass|dead|skull|taxiderm|skeleton|bones?)\b/.test(t);
-}
-
-function photoLargeEnough(p){
-  const d = p.original_dimensions;
-  if(!d || !d.width || !d.height) return true; // do not reject older records lacking metadata
-  const long = Math.max(d.width,d.height);
-  const short = Math.min(d.width,d.height);
-  return long >= MIN_LONG_EDGE && short >= MIN_SHORT_EDGE;
-}
-
-async function queryINatPage(latin, adultOnly, page){
-  const params = new URLSearchParams({
-    taxon_name: latin,
-    quality_grade: "research",
-    photos: "true",
-    photo_license: "cc0,cc-by,cc-by-sa",
-    per_page: "100",
-    page: String(page),
-    order_by: "votes",
-    order: "desc",
-    term_id: "17",
-    term_value_id: "18"
+async function inatQuery(latin, adultOnly, page=1){
+  const params=new URLSearchParams({
+    taxon_name:latin, quality_grade:"research", photos:"true",
+    photo_license:"cc0,cc-by,cc-by-sa", per_page:"100",
+    page:String(page), order_by:"votes", order:"desc",
+    term_id:"17", term_value_id:"18"
   });
-  if(adultOnly){
-    params.append("term_id","1");
-    params.append("term_value_id","2");
-  }
-  const url = "https://api.inaturalist.org/v1/observations?" + params.toString();
-  const res = await fetch(url);
-  if(!res.ok) throw new Error("iNaturalist HTTP " + res.status);
-  return await res.json();
+  if(adultOnly){ params.append("term_id","1"); params.append("term_value_id","2"); }
+  const r=await fetch("https://api.inaturalist.org/v1/observations?"+params);
+  if(!r.ok) throw new Error("iNaturalist");
+  return r.json();
 }
-
-function exactSpeciesMatch(obs, latin){
-  return (obs.taxon?.name || "") === latin;
-}
-
-function extractPool(data, latin){
+function extractINat(data, latin){
   const out=[];
-  for(const obs of (data.results || [])){
-    // Strict metadata gate.
-    if(!exactSpeciesMatch(obs, latin)) continue;
-    if(!isExplicitlyAlive(obs) || isExplicitlyDead(obs)) continue;
-    if(isExplicitlyJuvenile(obs) || suspiciousText(obs)) continue;
+  for(const obs of (data.results||[])){
+    if(!exactINatSpecies(obs,latin) || !alive(obs) || juvenile(obs)) continue;
+    if(suspiciousText(`${obs.description||""} ${obs.place_guess||""}`)) continue;
 
-    // Prefer observations with exactly one photo; this dramatically reduces
-    // the chance of selecting a contextual/non-target image from a multi-photo record.
-    const photos = (obs.photos || []).filter(p =>
-      p.url &&
-      photoLargeEnough(p) &&
-      ["cc0","cc-by","cc-by-sa"].includes((p.license_code||"").toLowerCase())
-    );
-    if(!photos.length) continue;
+    // Critical v4.1 rule: only single-photo observations.
+    // This prevents selecting a bird / landscape / companion image from a multi-photo observation.
+    if((obs.photos||[]).length !== 1) continue;
+    const p=obs.photos[0];
+    if(!p?.url || !licenseAllowed(p.license_code)) continue;
 
-    const p = photos[0];
     out.push({
-      id: String(p.id || `${obs.id}-0`),
-      url: largePhotoUrl(p.url),
-      observationUrl: obs.uri || `https://www.inaturalist.org/observations/${obs.id}`,
-      observer: obs.user?.name || obs.user?.login || "iNaturalist contributor",
-      attribution: p.attribution || "",
-      license: licenseLabel(p.license_code),
-      observationId: obs.id,
-      taxon: latin,
-      adult: isExplicitlyAdult(obs),
-      photoCount: photos.length,
-      votes: obs.identifications_count || 0
+      id:`inat-${p.id}`,
+      url:inatLarge(p.url),
+      sourceUrl:obs.uri || `https://www.inaturalist.org/observations/${obs.id}`,
+      source:"iNaturalist",
+      credit:p.attribution || obs.user?.name || obs.user?.login || "iNaturalist contributor",
+      license:licenseLabel(p.license_code),
+      adult:adult(obs),
+      score:(adult(obs)?1000:0)+(obs.identifications_count||0)
     });
   }
   return out;
 }
 
-async function loadPool(sp){
-  const cached = readJSON(cacheKey(sp.latin), null);
-  const now = Date.now();
-  if(cached && cached.savedAt && Array.isArray(cached.photos) &&
-     now - cached.savedAt < CACHE_DAYS*24*60*60*1000 &&
-     cached.photos.length >= 4){
+function gbifNameMatches(rec, latin){
+  const fields=[rec.species,rec.scientificName,rec.acceptedScientificName].filter(Boolean);
+  return fields.some(x => x===latin || x.startsWith(latin+" "));
+}
+function gbifMediaToPhoto(rec,m){
+  if(!m?.identifier || !licenseAllowed(m.license)) return null;
+  const text=`${rec.occurrenceRemarks||""} ${rec.verbatimLocality||""} ${m.title||""} ${m.description||""}`;
+  if(suspiciousText(text)) return null;
+  // Prefer new sources: GBIF records pointing back to iNaturalist add little value here.
+  if(/inaturalist/i.test(m.identifier||"") || /inaturalist/i.test(rec.datasetTitle||"")) return null;
+  return {
+    id:`gbif-${rec.key}-${m.identifier}`,
+    url:m.identifier,
+    sourceUrl:rec.references || `https://www.gbif.org/occurrence/${rec.key}`,
+    source:"GBIF",
+    credit:m.creator || rec.recordedBy || rec.institutionCode || rec.datasetTitle || "GBIF contributor",
+    license:licenseLabel(m.license),
+    adult:false,
+    score:100
+  };
+}
+async function gbifPool(latin){
+  const params=new URLSearchParams({
+    scientificName:latin,
+    mediaType:"StillImage",
+    occurrenceStatus:"PRESENT",
+    limit:"100"
+  });
+  const r=await fetch("https://api.gbif.org/v1/occurrence/search?"+params);
+  if(!r.ok) throw new Error("GBIF");
+  const data=await r.json();
+  const out=[];
+  for(const rec of (data.results||[])){
+    if(!gbifNameMatches(rec,latin)) continue;
+    if(rec.basisOfRecord && !["HUMAN_OBSERVATION","OBSERVATION","MACHINE_OBSERVATION"].includes(rec.basisOfRecord)) continue;
+    for(const m of (rec.media||[])){
+      const p=gbifMediaToPhoto(rec,m);
+      if(p){ out.push(p); break; } // one image per occurrence
+    }
+  }
+  return out;
+}
+
+async function wikiFallback(sp){
+  const params=new URLSearchParams({
+    origin:"*", action:"query", prop:"pageimages|info",
+    piprop:"thumbnail", pithumbsize:"1400", inprop:"url",
+    format:"json", titles:sp.wiki
+  });
+  const r=await fetch("https://en.wikipedia.org/w/api.php?"+params);
+  if(!r.ok) throw new Error("Wikipedia");
+  const data=await r.json();
+  const page=Object.values(data.query?.pages||{})[0];
+  if(!page?.thumbnail?.source) return [];
+  return [{
+    id:`wiki-${sp.wiki}`,
+    url:page.thumbnail.source,
+    sourceUrl:page.fullurl || `https://en.wikipedia.org/wiki/${sp.wiki}`,
+    source:"Wikipedia",
+    credit:"see source page",
+    license:"see source page",
+    adult:false,
+    score:10
+  }];
+}
+
+async function buildPool(sp){
+  const cached=readJSON(poolKey(sp.latin),null);
+  const now=Date.now();
+  if(cached?.savedAt && Array.isArray(cached.photos) &&
+     now-cached.savedAt < CACHE_DAYS*86400000 && cached.photos.length){
     return cached.photos;
   }
 
   let all=[];
-
-  // Stage 1: explicitly Alive + Adult, sorted by community votes.
-  for(let page=1; page<=2 && all.length<POOL_TARGET; page++){
-    const data = await queryINatPage(sp.latin, true, page);
-    all.push(...extractPool(data, sp.latin));
+  // 1) Best source: explicit Alive + Adult, exact taxon, research-grade, single-photo.
+  for(let page=1; page<=2 && all.length<TARGET_POOL; page++){
+    try{ all.push(...extractINat(await inatQuery(sp.latin,true,page),sp.latin)); }catch(_){}
   }
-
-  // Stage 2 fallback: explicitly Alive research-grade records, still reject
-  // anything explicitly juvenile or textually suspicious.
-  if(all.length < 12){
-    for(let page=1; page<=2 && all.length<POOL_TARGET; page++){
-      const data = await queryINatPage(sp.latin, false, page);
-      all.push(...extractPool(data, sp.latin));
+  // 2) Still Alive + research-grade, but life stage may be unannotated.
+  if(all.length<15){
+    for(let page=1; page<=2 && all.length<TARGET_POOL; page++){
+      try{ all.push(...extractINat(await inatQuery(sp.latin,false,page),sp.latin)); }catch(_){}
     }
   }
+  // 3) Alternative biodiversity source for rare species.
+  if(all.length<12){
+    try{ all.push(...await gbifPool(sp.latin)); }catch(_){}
+  }
+  // 4) Last-resort canonical photo so rare species can still appear.
+  if(all.length<3){
+    try{ all.push(...await wikiFallback(sp)); }catch(_){}
+  }
 
-  // Deduplicate photos and observations; prioritize adult, single-photo,
-  // and stronger community-identification records.
-  const unique = new Map();
-  all.forEach(p => {
-    const k = p.id;
-    if(!unique.has(k)) unique.set(k,p);
-  });
-  let pool=[...unique.values()];
-  pool.sort((a,b)=>{
-    const aScore=(a.adult?1000:0)+(a.photoCount===1?200:0)+(a.votes||0);
-    const bScore=(b.adult?1000:0)+(b.photoCount===1?200:0)+(b.votes||0);
-    return bScore-aScore;
-  });
-  pool=pool.slice(0,POOL_TARGET);
-
-  writeJSON(cacheKey(sp.latin), {savedAt:now, photos:pool});
+  const unique=new Map();
+  for(const ph of all){
+    if(!ph.url || unique.has(ph.url)) continue;
+    unique.set(ph.url,ph);
+  }
+  const pool=[...unique.values()].sort((a,b)=>b.score-a.score).slice(0,TARGET_POOL);
+  writeJSON(poolKey(sp.latin),{savedAt:now,photos:pool});
   return pool;
 }
 
-function choosePhoto(sp, pool){
-  if(!pool.length) return null;
-  const bad = new Set(readJSON(badKey(), []).map(String));
-  let seen = readJSON(seenKey(sp.latin), []).map(String);
-  const seenSet = new Set(seen);
-
-  let candidates = pool.filter(p => !bad.has(String(p.id)) && !seenSet.has(String(p.id)));
+function choosePhoto(sp,pool){
+  const bad=badSet();
+  let seen=readJSON(seenKey(sp.latin),[]).map(String);
+  let candidates=pool.filter(p=>!bad.has(String(p.id)) && !seen.includes(String(p.id)));
   if(!candidates.length){
     seen=[];
-    candidates=pool.filter(p => !bad.has(String(p.id)));
+    candidates=pool.filter(p=>!bad.has(String(p.id)));
   }
   if(!candidates.length) return null;
-
-  // Choose randomly from the better-ranked half, rather than the entire pool.
-  const elite = candidates.slice(0, Math.max(1, Math.ceil(candidates.length*0.55)));
-  const photo = elite[Math.floor(Math.random()*elite.length)];
-
-  seen.push(String(photo.id));
-  writeJSON(seenKey(sp.latin), seen);
-  return photo;
+  const top=candidates.slice(0,Math.max(1,Math.ceil(candidates.length*.6)));
+  const ph=top[Math.floor(Math.random()*top.length)];
+  seen.push(String(ph.id));
+  writeJSON(seenKey(sp.latin),seen);
+  return ph;
 }
 
-let deck=[], idx=0, correct=0, answered=0, current=null, currentPhoto=null, token=0;
+let requestedRounds=10, deck=[], idx=0, correct=0, answered=0;
+let current=null,currentPhoto=null,token=0;
+let unavailable=new Set(), usedSpecies=new Set();
 
 function makeChoices(answer){
   return shuffle([answer,...shuffle(species.filter(s=>s.latin!==answer.latin)).slice(0,3)]);
 }
+function setLoading(){
+  $("sealPhoto").style.display="none";
+  $("source").style.display="none";
+  $("loading").style.display="block";
+  $("loading").textContent="Připravuji dalšího tuleně…";
+  $("choices").style.display="none";
+  $("feedback").style.display="none";
+  $("skip").style.display="none";
+  $("badPhoto").style.display="none";
+  $("next").style.display="none";
+}
+function revealQuestion(){
+  $("loading").style.display="none";
+  $("sealPhoto").style.display="block";
+  $("choices").style.display="grid";
+  $("feedback").style.display="block";
+  $("skip").style.display="";
+  $("badPhoto").style.display="";
+  $("badPhoto").disabled=false;
+}
+function nextReplacementSpecies(){
+  const candidates=species.filter(s=>!unavailable.has(s.latin) && !usedSpecies.has(s.latin));
+  return candidates.length ? shuffle(candidates)[0] : null;
+}
 
 function startGame(){
-  const n=Math.min(Number($("roundCount").value),species.length);
-  deck=shuffle(species).slice(0,n);
-  idx=0; correct=0; answered=0;
+  requestedRounds=Math.min(Number($("roundCount").value),species.length);
+  deck=shuffle(species).slice(0,requestedRounds);
+  idx=0;correct=0;answered=0;unavailable=new Set();usedSpecies=new Set();
   $("score").textContent="0 / 0";
   showRound();
 }
 
 async function showRound(){
   if(idx>=deck.length) return endGame();
-
-  const myToken=++token;
+  const my=++token;
   current=deck[idx];
   currentPhoto=null;
-
+  setLoading();
   $("round").textContent=`Kolo ${idx+1} / ${deck.length}`;
-  $("feedback").textContent="Vyber jednu možnost. Správnou odpověď ukážu až potom.";
-  $("next").style.display="none";
-  $("skip").style.display="";
-  $("source").style.display="none";
-  $("sealPhoto").style.display="none";
-  $("loading").style.display="block";
-  $("loading").innerHTML="Hledám kvalitní fotografii živého jedince…";
 
-  const box=$("choices");
-  box.innerHTML="";
+  const box=$("choices"); box.innerHTML="";
   makeChoices(current).forEach(s=>{
     const b=document.createElement("button");
-    b.className="choice";
-    b.textContent=label(s);
-    b.disabled=true;
-    b.addEventListener("click",()=>answer(s,b));
-    box.appendChild(b);
+    b.className="choice"; b.textContent=label(s); b.disabled=true;
+    b.addEventListener("click",()=>answer(s,b)); box.appendChild(b);
   });
 
-  try{
-    const pool=await loadPool(current);
-    if(myToken!==token) return;
-    const photo=choosePhoto(current,pool);
-    if(!photo) throw new Error("No usable photos");
-    currentPhoto=photo;
+  let pool=[];
+  try{ pool=await buildPool(current); }catch(_){}
+  if(my!==token) return;
 
-    const img=$("sealPhoto");
-    img.onload=()=>{
-      if(myToken!==token) return;
-      $("loading").style.display="none";
-      img.style.display="block";
-      document.querySelectorAll(".choice").forEach(b=>b.disabled=false);
-      $("badPhoto").disabled=false;
-    };
-    img.onerror=()=>{
-      if(myToken!==token) return;
-      markBadAndReplace(false);
-    };
-    img.src=photo.url;
-  }catch(err){
-    $("loading").innerHTML="Pro tento druh se teď nepodařilo sestavit dostatečně kvalitní fond. Použij <b>Přeskočit</b>.";
+  const photo=choosePhoto(current,pool);
+  if(!photo){
+    // Silent auto-skip: user never sees an error or answer buttons for an unavailable sample.
+    unavailable.add(current.latin);
+    const replacement=nextReplacementSpecies();
+    if(replacement){
+      deck[idx]=replacement;
+      return showRound();
+    }
+    // If all remaining species are unavailable, shorten the game silently.
+    deck.splice(idx,1);
+    if(idx>=deck.length) return endGame();
+    return showRound();
   }
+
+  currentPhoto=photo;
+  const img=$("sealPhoto");
+  img.onload=()=>{
+    if(my!==token) return;
+    usedSpecies.add(current.latin);
+    revealQuestion();
+    document.querySelectorAll(".choice").forEach(b=>b.disabled=false);
+  };
+  img.onerror=()=>{
+    if(my!==token) return;
+    markBadId(photo.id);
+    showRound(); // silently try a different image/species
+  };
+  img.src=photo.url;
 }
 
 function lockChoices(){
@@ -396,83 +444,60 @@ function lockChoices(){
     if(b.textContent===label(current)) b.classList.add("correct");
   });
 }
-
-function photoMeta(){
+function meta(){
   if(!currentPhoto) return "";
-  const who=currentPhoto.attribution || currentPhoto.observer;
-  return `<div class="meta">Foto: ${who} · ${currentPhoto.license} · iNaturalist observation ${currentPhoto.observationId}</div>`;
+  return `<div class="meta">Foto: ${safeText(currentPhoto.credit)} · ${safeText(currentPhoto.license)} · ${safeText(currentPhoto.source)}</div>`;
 }
 function revealSource(){
   if(!currentPhoto) return;
-  $("source").href=currentPhoto.observationUrl;
+  $("source").href=currentPhoto.sourceUrl;
   $("source").style.display="inline-block";
 }
 function answer(sel,btn){
-  if(answered>idx) return;
-  answered++;
-  lockChoices();
-  revealSource();
+  if(answered>idx)return;
+  answered++; lockChoices(); revealSource();
   $("badPhoto").disabled=true;
-
   if(sel.latin===current.latin){
-    correct++;
-    btn.classList.add("correct");
-    $("feedback").innerHTML=`✅ <strong>Správně!</strong> Je to <strong>${label(current)}</strong> (<em>${current.latin}</em>).<br>${current.clue}${photoMeta()}`;
+    correct++;btn.classList.add("correct");
+    $("feedback").innerHTML=`✅ <strong>Správně!</strong> Je to <strong>${label(current)}</strong> (<em>${current.latin}</em>).<br>${current.clue}${meta()}`;
   }else{
     btn.classList.add("wrong");
-    $("feedback").innerHTML=`❌ Je to <strong>${label(current)}</strong> (<em>${current.latin}</em>).<br>${current.clue}${photoMeta()}`;
+    $("feedback").innerHTML=`❌ Je to <strong>${label(current)}</strong> (<em>${current.latin}</em>).<br>${current.clue}${meta()}`;
   }
   $("score").textContent=`${correct} / ${answered}`;
-  $("skip").style.display="none";
-  $("next").style.display="block";
+  $("skip").style.display="none";$("next").style.display="block";
 }
-
-function markBadAndReplace(showMessage=true){
-  if(!currentPhoto) return;
-  const bad=readJSON(badKey(),[]);
-  if(!bad.map(String).includes(String(currentPhoto.id))){
-    bad.push(String(currentPhoto.id));
-    writeJSON(badKey(),bad);
-  }
-  if(showMessage){
-    $("feedback").textContent="Fotka byla lokálně vyřazena. Načítám jinou pro stejný druh; kolo se nepočítá.";
-  }
+function replaceBadPhoto(){
+  if(currentPhoto) markBadId(currentPhoto.id);
+  // Same round, same species if another photo exists; otherwise auto-replace species.
   showRound();
 }
 
+$("badPhoto").addEventListener("click",replaceBadPhoto);
 $("skip").addEventListener("click",()=>{
-  if(answered>idx) return;
-  answered++;
-  lockChoices();
-  revealSource();
-  $("badPhoto").disabled=true;
-  $("feedback").innerHTML=`⏭️ Přeskočeno. Byl to <strong>${label(current)}</strong> (<em>${current.latin}</em>).<br>${current.clue}${photoMeta()}`;
+  if(answered>idx)return;
+  answered++;lockChoices();revealSource();$("badPhoto").disabled=true;
+  $("feedback").innerHTML=`⏭️ Přeskočeno. Byl to <strong>${label(current)}</strong> (<em>${current.latin}</em>).<br>${current.clue}${meta()}`;
   $("score").textContent=`${correct} / ${answered}`;
-  $("skip").style.display="none";
-  $("next").style.display="block";
+  $("skip").style.display="none";$("next").style.display="block";
 });
-$("badPhoto").addEventListener("click",()=>markBadAndReplace(true));
 $("next").addEventListener("click",()=>{idx++;showRound()});
 $("roundCount").addEventListener("change",startGame);
 
 function endGame(){
-  const pct=Math.round(100*correct/deck.length);
+  const denom=Math.max(1,answered);
+  const pct=Math.round(100*correct/denom);
   let msg="Tulení akademie právě začíná. 🦭";
-  if(pct===100) msg="Dokonalé. Tuleni před tebou nic neutají. 🦭";
-  else if(pct>=80) msg="Výborné! Velmi solidní tulení taxonomie. 🦭";
-  else if(pct>=60) msg="Velmi slušné — pár čenichů ještě doladit.";
-  else if(pct>=40) msg="Dobré základy. Rozdíly už začínají být vidět.";
-
-  $("game").innerHTML=`<div class="end">
-    <div style="font-size:64px">🦭</div>
-    <h2>${correct} / ${deck.length}</h2>
-    <p>${msg}</p>
+  if(answered && pct===100)msg="Dokonalé. Tuleni před tebou nic neutají. 🦭";
+  else if(pct>=80)msg="Výborné! Velmi solidní tulení taxonomie. 🦭";
+  else if(pct>=60)msg="Velmi slušné — pár čenichů ještě doladit.";
+  else if(pct>=40)msg="Dobré základy. Rozdíly už začínají být vidět.";
+  $("game").innerHTML=`<div class="end"><div style="font-size:64px">🦭</div>
+    <h2>${correct} / ${answered}</h2><p>${msg}</p>
     <button class="restart" id="restart">Hrát znovu</button>
-    <div class="dbline">Nevhodné fotografie, které jsi označil, zůstávají v tomto prohlížeči na blacklistu.</div>
-  </div>`;
+    <div class="dbline">Druhy bez dostupné fotografie se během hry automaticky přeskočily; do skóre se nepočítají.</div></div>`;
   document.getElementById("restart").addEventListener("click",()=>location.reload());
 }
-
 startGame();
 </script>
 </body>

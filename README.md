@@ -1,17 +1,31 @@
-# Seal Guesser
+# Seal Guesser – real photos edition
 
-Jednoduchá webová hra pro GitHub Pages.
+Tato verze je připravená pro GitHub Pages.
 
-## Nasazení
-1. Vytvoř nový veřejný repozitář na GitHubu, např. `seal-guesser`.
-2. Nahraj obsah tohoto ZIPu do kořene repozitáře.
-3. Otevři Settings → Pages.
-4. V části Build and deployment vyber:
-   - Source: Deploy from a branch
-   - Branch: main
-   - Folder: / (root)
-5. Ulož. GitHub během chvilky zobrazí veřejnou adresu.
+## Co je nové
+- skutečné fotografie z Wikipedie / Wikimedia Commons
+- české názvy doplněné anglickými názvy v závorkách
+- volba mezi `praví tuleni` a `všichni ploutvonožci`
+- 5 nebo 10 kol
+- průběžné skóre
+- vysvětlení poznávacích znaků po odpovědi
 
-## Poznámka
-Aktuální balíček používá lokální testovací SVG obrázky, aby se ověřilo, že hosting funguje bez externích síťových požadavků.
-Po potvrzení, že GitHub Pages funguje, lze je nahradit skutečnými fotografiemi tuleňů.
+## Důležitá poznámka
+Fotografie se nenačítají lokálně ze souborů v repozitáři, ale dynamicky přes veřejné API Wikipedie.
+To znamená, že:
+- aplikace potřebuje internetové připojení
+- na GitHub Pages funguje jako normální web
+- v interním HTML náhledu některých aplikací to fungovat nemusí
+
+## Nasazení / update na GitHubu
+Pokud už repozitář a GitHub Pages běží:
+
+1. Rozbal tento ZIP.
+2. Nahraď v repozitáři minimálně soubor `index.html` a `README.md`.
+3. Commitni změny.
+4. Počkej zhruba půl minuty až minutu, než GitHub Pages změny publikuje.
+5. Obnov stránku webu.
+
+## URL
+Typicky:
+`https://TVUJ-UCET.github.io/seal-guesser/`

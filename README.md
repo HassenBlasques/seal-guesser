@@ -1,36 +1,34 @@
-# Seal Guesser v4.1 — Multi-source + silent auto-skip
+# Seal Guesser v4.3 — persistent blacklist fix
 
-## Změny podle testování
-- Pokud pro vybraný druh není použitelná fotografie, uživatel neuvidí chybovou hlášku ani možnosti odpovědí.
-- Aplikace takový vzorek automaticky přeskočí a ve stejném kole zkusí jiný druh.
-- Pokud selže samotné načtení obrázku, obrázek se lokálně blacklistuje a automaticky se zkusí další.
+Oprava podle testu, kdy se fotografie označená jako `Nevhodná fotka` v pozdější hře objevila znovu.
 
-## Zdroje fotografií
-1. **iNaturalist** — první volba:
-   - research grade
-   - přesná druhová shoda
-   - explicitně Alive
-   - přednost Adult
-   - pouze single-photo observations, aby se minimalizovalo riziko, že se vybere vedlejší fotografie (např. pták)
-   - CC0 / CC BY / CC BY-SA
+## Proč se to mohlo stát
+Starší verze ukládala na blacklist pouze interní ID konkrétního záznamu.
 
-2. **GBIF** — fallback pro druhy s malým fondem:
-   - StillImage occurrence records
-   - přesná druhová shoda
-   - přednost záznamům mimo iNaturalist, aby zdroj skutečně rozšířil databázi
-   - CC0 / CC BY / CC BY-SA
-   - jeden obrázek na occurrence
+Stejná fotografie ale může být dostupná:
+- přes jiný GBIF occurrence record,
+- přes jinou velikost/URL náhledu,
+- případně přes jiný datový zdroj.
 
-3. **Wikipedia** — poslední fallback:
-   - titulní druhová fotografie
-   - použije se jen pokud je fond stále velmi malý
+Pak měla jiné ID a aplikace ji považovala za nový obrázek.
 
-## Nevhodná fotka
-Tlačítko „Nevhodná fotka“:
-- nezapočítá kolo,
-- obrázek uloží na lokální blacklist,
-- zkusí jinou fotografii stejného druhu,
-- pokud už žádná není, automaticky přejde na jiný druh.
+## V4.3
+Při stisku `Nevhodná fotka` se nyní ukládá:
+1. ID záznamu fotografie,
+2. normalizovaný identifikátor samotného obrázku / URL.
 
-## GitHub Pages update
-Nahraď `index.html` v kořeni repozitáře novým souborem a commitni změnu.
+Při výběru další fotografie se kontrolují oba.
+
+Navíc v4.3 importuje starý blacklist z v4.1/v4.2, takže dříve odmítnutá ID nezapomene.
+
+### iNaturalist
+U URL iNaturalist se blacklist váže přímo na stabilní photo ID, takže `large.jpg`, `medium.jpg` apod. jsou považovány za tutéž fotografii.
+
+### Wikimedia
+Různé velikosti thumbnailu se normalizují, aby se tentýž snímek nevrátil jen v jiném rozlišení.
+
+## Odkaz na zdroj
+`Zdroj fotografie` se záměrně zobrazuje až po odpovědi. Odkaz nebo URL mohou obsahovat název taxonu a před odpovědí by mohly prozradit správný druh.
+
+## GitHub Pages
+Nahraď stávající `index.html` novým a commitni změnu.

@@ -349,7 +349,7 @@ function choosePhoto(sp,pool){
 }
 
 let requestedRounds=10, deck=[], idx=0, correct=0, answered=0;
-let current=null,currentPhoto=null,token=0;
+let current=null,currentPhoto=null,token=0, answeredCorrect=false;
 let unavailable=new Set(), usedSpecies=new Set();
 
 function makeChoices(answer){
@@ -393,6 +393,7 @@ async function showRound(){
   const my=++token;
   current=deck[idx];
   currentPhoto=null;
+  answeredCorrect=false;
   setLoading();
   $("round").textContent=`Kolo ${idx+1} / ${deck.length}`;
 
@@ -456,9 +457,8 @@ function revealSource(){
 function answer(sel,btn){
   if(answered>idx)return;
   answered++; lockChoices(); revealSource();
-  $("badPhoto").disabled=true;
   if(sel.latin===current.latin){
-    correct++;btn.classList.add("correct");
+    correct++; answeredCorrect=true; btn.classList.add("correct");
     $("feedback").innerHTML=`✅ <strong>Správně!</strong> Je to <strong>${label(current)}</strong> (<em>${current.latin}</em>).<br>${current.clue}${meta()}`;
   }else{
     btn.classList.add("wrong");
@@ -469,15 +469,27 @@ function answer(sel,btn){
 }
 function replaceBadPhoto(){
   if(currentPhoto) markBadId(currentPhoto.id);
-  // Same round, same species if another photo exists; otherwise auto-replace species.
+
+  // "Nevhodná fotka" must work even after the answer was revealed.
+  // A rejected image is removed from scoring entirely.
+  if(answered > idx){
+    answered = Math.max(0, answered - 1);
+    if(answeredCorrect){
+      correct = Math.max(0, correct - 1);
+    }
+    answeredCorrect = false;
+    $("score").textContent=`${correct} / ${answered}`;
+  }
+
+  // Reload the same round. If the species has another usable image, it appears.
+  // If not, showRound() silently swaps in another species.
   showRound();
 }
 
 $("badPhoto").addEventListener("click",replaceBadPhoto);
 $("skip").addEventListener("click",()=>{
   if(answered>idx)return;
-  answered++;lockChoices();revealSource();$("badPhoto").disabled=true;
-  $("feedback").innerHTML=`⏭️ Přeskočeno. Byl to <strong>${label(current)}</strong> (<em>${current.latin}</em>).<br>${current.clue}${meta()}`;
+  answered++;lockChoices();revealSource();$("feedback").innerHTML=`⏭️ Přeskočeno. Byl to <strong>${label(current)}</strong> (<em>${current.latin}</em>).<br>${current.clue}${meta()}`;
   $("score").textContent=`${correct} / ${answered}`;
   $("skip").style.display="none";$("next").style.display="block";
 });
@@ -495,7 +507,7 @@ function endGame(){
   $("game").innerHTML=`<div class="end"><div style="font-size:64px">🦭</div>
     <h2>${correct} / ${answered}</h2><p>${msg}</p>
     <button class="restart" id="restart">Hrát znovu</button>
-    <div class="dbline">Druhy bez dostupné fotografie se během hry automaticky přeskočily; do skóre se nepočítají.</div></div>`;
+    <div class="dbline">Druhy bez dostupné fotografie se během hry automaticky přeskočily; nevhodné fotografie se ze skóre odstraní.</div></div>`;
   document.getElementById("restart").addEventListener("click",()=>location.reload());
 }
 startGame();

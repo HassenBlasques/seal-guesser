@@ -86,47 +86,47 @@ select{background:#101c30;color:white;border:1px solid #334155;border-radius:10p
     </div>
 
     <div class="dbline" id="dbline">
-      Databáze: 18 druhů pravých tuleňů. Fotky se skládají z iNaturalist, GBIF a jako poslední záloha z Wikipedie. Nedostupný druh se automaticky přeskočí.</div>
+      Databáze: 18 druhů pravých tuleňů. V5 doplňuje vzácné druhy z celých druhových kategorií Wikimedia Commons; iNaturalist zůstává prioritní a GBIF/Wikipedia jsou zálohy.</div>
   </div>
 </div>
 
 <script>
 const species = [
-  {cs:"tuleň středomořský", en:"Mediterranean monk seal", latin:"Monachus monachus", wiki:"Mediterranean_monk_seal",
+  {cs:"tuleň středomořský", en:"Mediterranean monk seal", latin:"Monachus monachus", wiki:"Mediterranean_monk_seal", commonsCats:["Monachus monachus"],
    clue:"Velký tuleň s krátkou širokou hlavou; dospělí mohou být velmi tmaví."},
-  {cs:"tuleň havajský", en:"Hawaiian monk seal", latin:"Neomonachus schauinslandi", wiki:"Hawaiian_monk_seal",
+  {cs:"tuleň havajský", en:"Hawaiian monk seal", latin:"Neomonachus schauinslandi", wiki:"Hawaiian_monk_seal", commonsCats:["Neomonachus schauinslandi"],
    clue:"Štíhlý tropický tuleň s poměrně hladkou šedohnědou srstí a širokým čenichem."},
-  {cs:"rypouš severní", en:"Northern elephant seal", latin:"Mirounga angustirostris", wiki:"Northern_elephant_seal",
+  {cs:"rypouš severní", en:"Northern elephant seal", latin:"Mirounga angustirostris", wiki:"Northern_elephant_seal", commonsCats:["Mirounga angustirostris"],
    clue:"Dospělý samec má nápadný převislý nos; druh je velmi mohutný."},
-  {cs:"rypouš jižní", en:"Southern elephant seal", latin:"Mirounga leonina", wiki:"Southern_elephant_seal",
+  {cs:"rypouš jižní", en:"Southern elephant seal", latin:"Mirounga leonina", wiki:"Southern_elephant_seal", commonsCats:["Mirounga leonina"],
    clue:"Největší pravý tuleň; dospělý samec má mohutné tělo a nafukovací chobot."},
-  {cs:"tuleň krabožravý", en:"Crabeater seal", latin:"Lobodon carcinophaga", wiki:"Crabeater_seal",
+  {cs:"tuleň krabožravý", en:"Crabeater seal", latin:"Lobodon carcinophaga", wiki:"Crabeater_seal", commonsCats:["Lobodon carcinophaga"],
    clue:"Štíhlejší antarktický tuleň, často světle zbarvený a s jizvami."},
-  {cs:"tuleň Weddellův", en:"Weddell seal", latin:"Leptonychotes weddellii", wiki:"Weddell_seal",
+  {cs:"tuleň Weddellův", en:"Weddell seal", latin:"Leptonychotes weddellii", wiki:"Weddell_seal", commonsCats:["Leptonychotes weddellii"],
    clue:"Robustní antarktický tuleň s krátkým čenichem a často jemně skvrnitými boky."},
-  {cs:"tuleň leopardí", en:"Leopard seal", latin:"Hydrurga leptonyx", wiki:"Leopard_seal",
+  {cs:"tuleň leopardí", en:"Leopard seal", latin:"Hydrurga leptonyx", wiki:"Leopard_seal", commonsCats:["Hydrurga leptonyx"],
    clue:"Dlouhá plazovitá hlava, mohutná tlama a skvrny na krku a bocích."},
-  {cs:"tuleň Rossův", en:"Ross seal", latin:"Ommatophoca rossii", wiki:"Ross_seal",
+  {cs:"tuleň Rossův", en:"Ross seal", latin:"Ommatophoca rossii", wiki:"Ross_seal", commonsCats:["Ommatophoca rossii"],
    clue:"Poměrně krátká hlava, velké oči a často proužkování či skvrnění na krku."},
-  {cs:"tuleň vousatý", en:"Bearded seal", latin:"Erignathus barbatus", wiki:"Bearded_seal",
+  {cs:"tuleň vousatý", en:"Bearded seal", latin:"Erignathus barbatus", wiki:"Bearded_seal", commonsCats:["Erignathus barbatus","Erignathus barbatus in Svalbard"],
    clue:"Velmi dlouhé a husté vousy a poměrně hranatý čenich."},
-  {cs:"čepcol hřebenatý", en:"Hooded seal", latin:"Cystophora cristata", wiki:"Hooded_seal",
+  {cs:"čepcol hřebenatý", en:"Hooded seal", latin:"Cystophora cristata", wiki:"Hooded_seal", commonsCats:["Cystophora cristata"],
    clue:"Nafukovací „čepec“ je znak dospělého samce; samice a mladší jedinci ho nápadný mít nemusí."},
-  {cs:"tuleň kuželozubý", en:"Grey seal", latin:"Halichoerus grypus", wiki:"Grey_seal",
+  {cs:"tuleň kuželozubý", en:"Grey seal", latin:"Halichoerus grypus", wiki:"Grey_seal", commonsCats:["Halichoerus grypus"],
    clue:"Protáhlejší profil hlavy a delší nos než u tuleně obecného."},
-  {cs:"tuleň pruhovaný", en:"Ribbon seal", latin:"Histriophoca fasciata", wiki:"Ribbon_seal",
+  {cs:"tuleň pruhovaný", en:"Ribbon seal", latin:"Histriophoca fasciata", wiki:"Ribbon_seal", commonsCats:["Histriophoca fasciata"],
    clue:"Dospělci mají nápadné světlé pruhy obtáčející tělo a přední ploutve."},
-  {cs:"tuleň grónský", en:"Harp seal", latin:"Pagophilus groenlandicus", wiki:"Harp_seal",
+  {cs:"tuleň grónský", en:"Harp seal", latin:"Pagophilus groenlandicus", wiki:"Harp_seal", commonsCats:["Pagophilus groenlandicus"],
    clue:"Dospělci mají typickou tmavou kresbu připomínající harfu."},
-  {cs:"tuleň skvrnitý", en:"Spotted seal", latin:"Phoca largha", wiki:"Spotted_seal",
+  {cs:"tuleň skvrnitý", en:"Spotted seal", latin:"Phoca largha", wiki:"Spotted_seal", commonsCats:["Phoca largha"],
    clue:"Světlá až stříbřitá srst s výraznými tmavými skvrnami po těle."},
-  {cs:"tuleň obecný", en:"Harbor seal", latin:"Phoca vitulina", wiki:"Harbor_seal",
+  {cs:"tuleň obecný", en:"Harbor seal", latin:"Phoca vitulina", wiki:"Harbor_seal", commonsCats:["Phoca vitulina"],
    clue:"Kulatá hlava, krátký čenich a charakteristické V‑čkové nozdry."},
-  {cs:"tuleň kaspický", en:"Caspian seal", latin:"Pusa caspica", wiki:"Caspian_seal",
+  {cs:"tuleň kaspický", en:"Caspian seal", latin:"Pusa caspica", wiki:"Caspian_seal", commonsCats:["Pusa caspica"],
    clue:"Menší druh; často šedavý se skvrněním, endemický pro Kaspické moře."},
-  {cs:"tuleň kroužkovaný", en:"Ringed seal", latin:"Pusa hispida", wiki:"Ringed_seal",
+  {cs:"tuleň kroužkovaný", en:"Ringed seal", latin:"Pusa hispida", wiki:"Ringed_seal", commonsCats:["Pusa hispida"],
    clue:"Malý arktický tuleň s typickými světlými kroužky na tmavší srsti."},
-  {cs:"tuleň bajkalský", en:"Baikal seal", latin:"Pusa sibirica", wiki:"Baikal_seal",
+  {cs:"tuleň bajkalský", en:"Baikal seal", latin:"Pusa sibirica", wiki:"Baikal_seal", commonsCats:["Pusa sibirica","Pusa sibirica at the Ushkan Islands"],
    clue:"Drobný sladkovodní tuleň s velkýma očima a poměrně jednolitou šedou srstí."}
 ];
 
@@ -151,8 +151,8 @@ function readJSON(key, fallback){
 }
 function writeJSON(key, value){ try{ localStorage.setItem(key, JSON.stringify(value)); }catch(_){} }
 
-function poolKey(latin){ return `sg.v4_1.pool.${latin}`; }
-function seenKey(latin){ return `sg.v4_1.seen.${latin}`; }
+function poolKey(latin){ return `sg.v5.pool.${latin}`; }
+function seenKey(latin){ return `sg.v5.seen.${latin}`; }
 function legacyBadKey(){ return "sg.v4_1.bad"; }
 function badIdsKey(){ return "sg.v4_3.badIds"; }
 function badUrlsKey(){ return "sg.v4_3.badUrls"; }
@@ -318,6 +318,96 @@ async function gbifPool(latin){
   return out;
 }
 
+
+function commonsBadTitle(title){
+  const t=(title||"").toLowerCase();
+  return /\b(map|range|distribution|area|logo|stamp|stamps|museum|specimen|specimens|skull|skeleton|anatomy|skin|fur|illustration|drawing|engraving|pup|pups|juvenile|newborn|baby|whitecoat|dead|death|carcass|killed|hunting)\b/.test(t);
+}
+
+function commonsLicenseAllowed(meta){
+  const short=(meta?.LicenseShortName?.value||"").toLowerCase();
+  const url=(meta?.LicenseUrl?.value||"").toLowerCase();
+  return short.includes("cc0") ||
+         short.includes("cc by") ||
+         short.includes("public domain") ||
+         url.includes("creativecommons.org/publicdomain/zero") ||
+         url.includes("creativecommons.org/licenses/by/") ||
+         url.includes("creativecommons.org/licenses/by-sa/");
+}
+
+function commonsLicenseLabel(meta){
+  const short=meta?.LicenseShortName?.value;
+  if(short) return short.replace(/<[^>]*>/g,"");
+  return "Commons licence";
+}
+
+function stripHtml(s){
+  const d=document.createElement("div");
+  d.innerHTML=s||"";
+  return (d.textContent||d.innerText||"").trim();
+}
+
+async function commonsCategoryPool(category){
+  const params=new URLSearchParams({
+    origin:"*",
+    action:"query",
+    generator:"categorymembers",
+    gcmtitle:`Category:${category}`,
+    gcmtype:"file",
+    gcmlimit:"50",
+    prop:"imageinfo",
+    iiprop:"url|extmetadata|size|mime",
+    iiurlwidth:"1600",
+    format:"json"
+  });
+  const r=await fetch("https://commons.wikimedia.org/w/api.php?"+params);
+  if(!r.ok) throw new Error("Commons");
+  const data=await r.json();
+  const out=[];
+
+  for(const page of Object.values(data.query?.pages||{})){
+    const title=page.title||"";
+    if(commonsBadTitle(title)) continue;
+
+    const ii=page.imageinfo?.[0];
+    if(!ii || !ii.thumburl || !ii.mime?.startsWith("image/")) continue;
+    if(ii.width && ii.height && Math.max(ii.width,ii.height)<600) continue;
+
+    const meta=ii.extmetadata||{};
+    if(!commonsLicenseAllowed(meta)) continue;
+
+    const desc=[
+      stripHtml(meta.ImageDescription?.value),
+      stripHtml(meta.ObjectName?.value)
+    ].join(" ");
+    if(suspiciousText(desc) || commonsBadTitle(desc)) continue;
+
+    out.push({
+      id:`commons-${page.pageid}`,
+      url:ii.thumburl,
+      sourceUrl:ii.descriptionurl || `https://commons.wikimedia.org/wiki/${encodeURIComponent(title.replaceAll(" ","_"))}`,
+      source:"Wikimedia Commons",
+      credit:stripHtml(meta.Artist?.value) || stripHtml(meta.Credit?.value) || "Wikimedia Commons contributor",
+      license:commonsLicenseLabel(meta),
+      adult:false,
+      score:550
+    });
+  }
+  return out;
+}
+
+async function commonsPool(sp){
+  const all=[];
+  for(const cat of (sp.commonsCats||[])){
+    try{ all.push(...await commonsCategoryPool(cat)); }catch(_){}
+  }
+  const unique=new Map();
+  for(const ph of all){
+    if(ph.url && !unique.has(canonicalImageUrl(ph.url))) unique.set(canonicalImageUrl(ph.url),ph);
+  }
+  return [...unique.values()];
+}
+
 async function wikiFallback(sp){
   const params=new URLSearchParams({
     origin:"*", action:"query", prop:"pageimages|info",
@@ -350,31 +440,46 @@ async function buildPool(sp){
   }
 
   let all=[];
-  // 1) Best source: explicit Alive + Adult, exact taxon, research-grade, single-photo.
+
+  // 1) Highest-confidence source: iNaturalist research-grade, exact species,
+  // explicitly Alive + preferably Adult, and only one photo in the observation.
   for(let page=1; page<=2 && all.length<TARGET_POOL; page++){
     try{ all.push(...extractINat(await inatQuery(sp.latin,true,page),sp.latin)); }catch(_){}
   }
-  // 2) Still Alive + research-grade, but life stage may be unannotated.
   if(all.length<15){
     for(let page=1; page<=2 && all.length<TARGET_POOL; page++){
       try{ all.push(...extractINat(await inatQuery(sp.latin,false,page),sp.latin)); }catch(_){}
     }
   }
-  // 3) Alternative biodiversity source for rare species.
-  if(all.length<12){
+
+  // 2) Wikimedia Commons species categories.
+  // This is particularly important for rare species whose iNaturalist pool is tiny.
+  if(all.length<TARGET_POOL){
+    try{ all.push(...await commonsPool(sp)); }catch(_){}
+  }
+
+  // 3) GBIF occurrence media adds a genuinely different biodiversity source.
+  if(all.length<15){
     try{ all.push(...await gbifPool(sp.latin)); }catch(_){}
   }
-  // 4) Last-resort canonical photo so rare species can still appear.
+
+  // 4) Canonical Wikipedia lead image as the final safety net.
   if(all.length<3){
     try{ all.push(...await wikiFallback(sp)); }catch(_){}
   }
 
+  // Deduplicate not only by record ID but by normalized underlying image.
   const unique=new Map();
   for(const ph of all){
-    if(!ph.url || unique.has(ph.url)) continue;
-    unique.set(ph.url,ph);
+    if(!ph.url) continue;
+    const k=canonicalImageUrl(ph.url);
+    if(!unique.has(k) || (ph.score||0)>(unique.get(k).score||0)) unique.set(k,ph);
   }
-  const pool=[...unique.values()].sort((a,b)=>b.score-a.score).slice(0,TARGET_POOL);
+
+  const pool=[...unique.values()]
+    .sort((a,b)=>(b.score||0)-(a.score||0))
+    .slice(0,TARGET_POOL);
+
   writeJSON(poolKey(sp.latin),{savedAt:now,photos:pool});
   return pool;
 }

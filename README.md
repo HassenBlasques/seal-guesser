@@ -1,34 +1,71 @@
-# Seal Guesser v4.3 — persistent blacklist fix
+# Seal Guesser v5 — Commons feeding
 
-Oprava podle testu, kdy se fotografie označená jako `Nevhodná fotka` v pozdější hře objevila znovu.
+Tato verze cíleně řeší druhy s malými fondy fotografií.
 
-## Proč se to mohlo stát
-Starší verze ukládala na blacklist pouze interní ID konkrétního záznamu.
+## Co jsme zjistili diagnostikou
+Předchozí cache měla mimo jiné:
+- Ross seal: 1
+- Ribbon seal: 1
+- Spotted seal: 1
+- Caspian seal: 1
+- Bearded seal: 2
+- Mediterranean monk seal: 4
+- Harp seal: 4
+- Baikal seal: 4
 
-Stejná fotografie ale může být dostupná:
-- přes jiný GBIF occurrence record,
-- přes jinou velikost/URL náhledu,
-- případně přes jiný datový zdroj.
+## Nový zdroj: celé druhové kategorie Wikimedia Commons
+V4 používala z Wikipedie jen titulní fotografii. V5 prohledává přímo `Category:<latin name>` na Wikimedia Commons.
 
-Pak měla jiné ID a aplikace ji považovala za nový obrázek.
+Pro některé slabé druhy jsou navíc přidané bohaté podkategorie:
+- `Erignathus barbatus in Svalbard`
+- `Pusa sibirica at the Ushkan Islands`
 
-## V4.3
-Při stisku `Nevhodná fotka` se nyní ukládá:
-1. ID záznamu fotografie,
-2. normalizovaný identifikátor samotného obrázku / URL.
+### Filtry Commons
+Automaticky se vyřazují názvy / popisy obsahující např.:
+- map, range, distribution, area
+- logo, stamp
+- museum, specimen
+- skull, skeleton, anatomy
+- skin, fur
+- illustration, drawing, engraving
+- pup, juvenile, newborn, baby, whitecoat
+- dead, death, carcass, killed, hunting
 
-Při výběru další fotografie se kontrolují oba.
+Použijí se jen soubory s povolenou licencí (CC0, CC BY, CC BY-SA nebo Public Domain) a rozumným rozlišením.
 
-Navíc v4.3 importuje starý blacklist z v4.1/v4.2, takže dříve odmítnutá ID nezapomene.
+## Pořadí zdrojů
+1. iNaturalist — research-grade + Alive, přednost Adult
+2. Wikimedia Commons — druhové kategorie
+3. GBIF
+4. Wikipedia — titulní obrázek jako poslední fallback
 
-### iNaturalist
-U URL iNaturalist se blacklist váže přímo na stabilní photo ID, takže `large.jpg`, `medium.jpg` apod. jsou považovány za tutéž fotografii.
+## Deduplikace
+Stejný obraz se deduplikuje podle normalizované URL, takže se nemá započítat vícekrát jen proto, že existuje v jiné velikosti nebo přes jiný záznam.
 
-### Wikimedia
-Různé velikosti thumbnailu se normalizují, aby se tentýž snímek nevrátil jen v jiném rozlišení.
+## Blacklist
+Blacklist z v4.3 zůstává zachován.
+Fotografie označená `Nevhodná fotka` se dál ukládá podle ID i normalizované URL.
 
-## Odkaz na zdroj
-`Zdroj fotografie` se záměrně zobrazuje až po odpovědi. Odkaz nebo URL mohou obsahovat název taxonu a před odpovědí by mohly prozradit správný druh.
+## Aktualizace
+Nahraď v GitHub repozitáři stávající `index.html`.
+V5 používá nový cache namespace, takže nové fondy se sestaví automaticky; není nutné ručně mazat starou cache.
 
-## GitHub Pages
-Nahraď stávající `index.html` novým a commitni změnu.
+## Diagnostika po odehrání / načtení
+V konzoli lze zkontrolovat lokální fondy:
+
+```js
+console.table(
+  species.map(s => {
+    const raw = localStorage.getItem(poolKey(s.latin));
+    const pool = raw ? (JSON.parse(raw).photos || []) : [];
+    return {
+      Species: `${s.cs} (${s.en})`,
+      Total: pool.length,
+      iNaturalist: pool.filter(x => x.source === "iNaturalist").length,
+      Commons: pool.filter(x => x.source === "Wikimedia Commons").length,
+      GBIF: pool.filter(x => x.source === "GBIF").length,
+      Wikipedia: pool.filter(x => x.source === "Wikipedia").length
+    };
+  })
+);
+```
